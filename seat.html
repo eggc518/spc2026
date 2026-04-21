@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>강의실 좌석 배치도 - 최종 레이아웃 수정</title>
+    <style>
+        :root {
+            --seat-bg: #fff2cc;
+            --seat-border: #000;
+            --occupied-color: #333;
+        }
+        body { font-family: 'Malgun Gothic', sans-serif; background-color: #fff; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        
+        /* 1. 최상단 버튼 구역 */
+        .controls { margin-bottom: 20px; display: flex; gap: 10px; }
+        button { padding: 10px 25px; cursor: pointer; border: 1px solid #999; background: #fdfdfd; font-weight: bold; border-radius: 4px; }
+        button:hover { background: #eee; }
+        .btn-shuffle { background-color: #444; color: white; border: none; }
+
+        /* 2. 강사 구역 (버튼 아래, 좌석 위) */
+        .instructor-wrapper { width: 100%; display: flex; justify-content: flex-end; margin-bottom: 20px; padding-right: 40px; }
+        .instructor-box { width: 180px; text-align: center; }
+        .instructor { background: #dae8fc; border: 1px solid #6c8ebf; width: 120px; padding: 10px; margin: 0 auto 5px; font-weight: bold; }
+        .screen-label { font-weight: bold; font-size: 14px; border-bottom: 2px solid #333; padding-bottom: 5px; }
+
+        /* 3. 좌석 레이아웃 구역 */
+        .classroom { display: flex; align-items: flex-start; gap: 60px; padding: 20px; border-top: 1px solid #eee; }
+
+        .section-container { display: flex; flex-direction: column; gap: 10px; }
+        .section-label { text-align: center; font-weight: bold; margin-bottom: 5px; background: #eee; padding: 5px; border-radius: 4px; font-size: 14px; }
+        
+        .seat-row { display: flex; gap: 5px; height: 35px; justify-content: flex-start; }
+        
+        .seat {
+            width: 85px;
+            height: 35px;
+            background-color: var(--seat-bg);
+            border: 1px solid var(--seat-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            cursor: pointer;
+            color: var(--occupied-color);
+        }
+        .seat.hidden { visibility: hidden; pointer-events: none; }
+        .seat.active { font-weight: bold; background-color: #fff9c4; }
+
+        .window-area { font-size: 12px; color: #ccc; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button class="btn-shuffle" onclick="shuffleAll()">전체 셔플 실행</button>
+        <button onclick="resetSeats()">초기화</button>
+    </div>
+
+    <div>
+        <div class="screen-label">앞쪽 스크린</div>
+    </div>
+
+    <div class="instructor-wrapper">
+        <div class="instructor-box">
+            <div class="instructor">강사</div>   
+        </div>
+    </div>
+
+    <div class="classroom">
+        <div class="section-container">
+            <div class="section-label">1열</div>
+            <div id="sec-A"></div>
+        </div>
+
+        <div class="section-container">
+            <div class="section-label">2열</div>
+            <div id="sec-B"></div>
+        </div>
+
+        <div class="section-container">
+            <div class="section-label">3열</div>
+            <div id="sec-C"></div>
+        </div>
+    </div>
+
+    <div class="window-area">뒤쪽 유리창 영역</div>
+
+    <script>
+        function createSeat(section) {
+            const div = document.createElement('div');
+            div.className = 'seat section-' + section;
+            div.innerText = "빈자리";
+            div.onclick = () => manualSelect(div);
+            return div;
+        }
+
+        function createHiddenSpace() {
+            const div = document.createElement('div');
+            div.className = 'seat hidden';
+            return div;
+        }
+
+        function initLayout() {
+            // 1열: 2명씩 5줄
+            const secA = document.getElementById('sec-A');
+            for(let i=0; i<5; i++) {
+                const row = document.createElement('div'); row.className = 'seat-row';
+                row.appendChild(createSeat('A'));
+                row.appendChild(createSeat('A'));
+                secA.appendChild(row);
+            }
+
+            // 2열: 첫줄 2명, 나머지 3명
+            const secB = document.getElementById('sec-B');
+            for(let i=0; i<5; i++) {
+                const row = document.createElement('div'); row.className = 'seat-row';
+                if(i === 0) {
+                    row.appendChild(createSeat('B'));
+                    row.appendChild(createSeat('B'));
+                    row.appendChild(createHiddenSpace());
+                } else {
+                    row.appendChild(createSeat('B')); row.appendChild(createSeat('B')); row.appendChild(createSeat('B'));
+                }
+                secB.appendChild(row);
+            }
+
+            // 3열: 첫줄 비움, 2~3줄 1명, 4~5줄 2명
+            const secC = document.getElementById('sec-C');
+            for(let i=0; i<5; i++) {
+                const row = document.createElement('div'); row.className = 'seat-row';
+                if(i === 0) {
+                    row.appendChild(createHiddenSpace()); row.appendChild(createHiddenSpace());
+                } else if(i === 1 || i === 2) {
+                    row.appendChild(createSeat('C')); row.appendChild(createHiddenSpace());
+                } else {
+                    row.appendChild(createSeat('C')); row.appendChild(createSeat('C'));
+                }
+                secC.appendChild(row);
+            }
+        }
+
+        function manualSelect(el) {
+            const name = prompt("이름을 입력하세요:");
+            if (name) { el.innerText = name; el.classList.add('active'); }
+        }
+
+        function shuffleSection(sectionLetter) {
+            const seats = Array.from(document.querySelectorAll('.section-' + sectionLetter));
+            let labels = seats.map((_, i) => `${sectionLetter}-${i + 1}`);
+            for (let i = labels.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [labels[i], labels[j]] = [labels[j], labels[i]];
+            }
+            seats.forEach((seat, idx) => {
+                seat.innerText = labels[idx];
+                seat.classList.add('active');
+            });
+        }
+
+        function shuffleAll() {
+            shuffleSection('A'); shuffleSection('B'); shuffleSection('C');
+        }
+
+        function resetSeats() {
+            document.querySelectorAll('.seat:not(.hidden)').forEach(s => {
+                s.innerText = "빈자리";
+                s.classList.remove('active');
+            });
+        }
+
+        initLayout();
+    </script>
+</body>
+</html>
