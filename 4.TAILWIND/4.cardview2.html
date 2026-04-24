@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Cards</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <div class="max-w-6xl mx-auto p-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- 카드 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-2 hover:scale-105 hover:shadow-2xl transition duration-300">
+        <img src="https://picsum.photos/400/300?1" class="w-full h-48 object-cover">
+        <div class="p-5">
+          <h3 class="text-lg font-bold mb-2">카드 1</h3>
+          <p class="text-gray-600 text-sm mb-4">첫 번째 카드입니다.</p>
+
+          <button onclick="toggleDetail(1)" 
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            보기
+          </button>
+
+          <div id="detail-1" class="hidden mt-4 text-sm text-gray-700">
+            👉 추가 설명: 이 카드는 hover 애니메이션과 클릭 토글 기능이 포함되어 있습니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 카드 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-2 hover:scale-105 hover:shadow-2xl transition duration-300">
+        <img src="https://picsum.photos/400/300?2" class="w-full h-48 object-cover">
+        <div class="p-5">
+          <h3 class="text-lg font-bold mb-2">카드 2</h3>
+          <p class="text-gray-600 text-sm mb-4">두 번째 카드입니다.</p>
+
+          <button onclick="toggleDetail(2)" 
+            class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+            보기
+          </button>
+
+          <div id="detail-2" class="hidden mt-4 text-sm text-gray-700">
+            👉 추가 설명: Tailwind 유틸리티 클래스만으로 빠르게 UI를 만들 수 있습니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 카드 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-2 hover:scale-105 hover:shadow-2xl transition duration-300">
+        <img src="https://picsum.photos/400/300?3" class="w-full h-48 object-cover">
+        <div class="p-5">
+          <h3 class="text-lg font-bold mb-2">카드 3</h3>
+          <p class="text-gray-600 text-sm mb-4">세 번째 카드입니다.</p>
+
+          <button onclick="toggleDetail(3)" 
+            class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600">
+            보기
+          </button>
+
+          <div id="detail-3" class="hidden mt-4 text-sm text-gray-700">
+            👉 추가 설명: 간단한 JS로 인터랙션도 쉽게 추가할 수 있습니다.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleDetail(id) {
+      const el = document.getElementById('detail-' + id);
+      el.classList.toggle('hidden');
+    }
+  </script>
+
+</body>
+</html>

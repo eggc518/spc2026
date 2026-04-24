@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 Card Layout</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <div class="max-w-6xl mx-auto p-6">
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- 카드 1 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+        <img src="https://picsum.photos/400/300?1" class="w-full h-48 object-cover">
+        <div class="p-5">
+          <h3 class="text-lg font-bold mb-2">카드 1</h3>
+          <p class="text-gray-600 text-sm mb-4">
+            첫 번째 카드 설명입니다. 깔끔한 UI 구성 예시입니다.
+          </p>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            보기
+          </button>
+        </div>
+      </div>
+
+      <!-- 카드 2 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+        <img src="https://picsum.photos/400/300?2" class="w-full h-48 object-cover">
+        <div class="p-5">
+          <h3 class="text-lg font-bold mb-2">카드 2</h3>
+          <p class="text-gray-600 text-sm mb-4">
+            두 번째 카드 설명입니다. 동일한 구조로 재사용 가능합니다.
+          </p>
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+            보기
+          </button>
+        </div>
+      </div>
+
+      <!-- 카드 3 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+        <img src="https://picsum.photos/400/300?3" class="w-full h-48 object-cover">
+        <div class="p-5">
+          <h3 class="text-lg font-bold mb-2">카드 3</h3>
+          <p class="text-gray-600 text-sm mb-4">
+            세 번째 카드 설명입니다. 반응형으로 자동 정렬됩니다.
+          </p>
+          <button class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600">
+            보기
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
