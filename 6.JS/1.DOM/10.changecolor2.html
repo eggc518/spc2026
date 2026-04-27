@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: white;">
+    <h1 id="text">색상 변경 버튼</h1>
+    <button onclick="changeColor()">색상 변경</button>
+
+    <script>
+        //버튼 누를때마다 r->b->g
+        const colors = ["red", "blue", "green"];
+
+        function changeColor() {
+            if(document.body.style.backgroundColor==='white') {
+                document.body.style.backgroundColor='red';
+            } else if(document.body.style.backgroundColor==='red') { 
+                document.body.style.backgroundColor='blue';
+            } else if(document.body.style.backgroundColor==='blue') {
+                document.body.style.backgroundColor='green';
+            } else if(document.body.style.backgroundColor==='green') {
+                document.body.style.backgroundColor='red';
+            }       
+        }
+    </script>
+</body>
+</html>
