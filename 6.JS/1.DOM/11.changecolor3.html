@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="text">색상 변경 버튼</h1>
+    <button onclick="changeColor()">색상 변경</button>
+
+    <script>
+        function changeColor() {  
+            //0~255까지의 값 구하기
+            const r = Math.floor(Math.random()*255);        
+            const g = Math.floor(Math.random()*255);        
+            const b = Math.floor(Math.random()*255);  
+            
+            //hex로 바꾸기
+            const rHex = r.toString(16).padStart(2,'0'); //2자리가 나와야함
+            const gHex = g.toString(16).padStart(2,'0');
+            const bHex = b.toString(16).padStart(2,'0');
+
+            const finalColor = '#' + rHex + gHex + bHex;
+            // `#${rHex}{gHex}{bHex}`        백틱 사용
+            // `rgba(${r}, ${g}, ${b}, 0.5)` 반투명으로 색상 반영
+            console.log(finalColor);
+            document.body.style.backgroundColor = finalColor;
+        }
+    </script>
+</body>
+</html>

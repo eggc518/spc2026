@@ -11,18 +11,12 @@
 
     <script>
         //버튼 누를때마다 r->b->g
-        const colors = ["red", "blue", "green"];
+        const colors = ["red", "blue", "green", "orange","yellow"];
+        let index = 0;
 
-        function changeColor() {
-            if(document.body.style.backgroundColor==='white') {
-                document.body.style.backgroundColor='red';
-            } else if(document.body.style.backgroundColor==='red') { 
-                document.body.style.backgroundColor='blue';
-            } else if(document.body.style.backgroundColor==='blue') {
-                document.body.style.backgroundColor='green';
-            } else if(document.body.style.backgroundColor==='green') {
-                document.body.style.backgroundColor='red';
-            }       
+        function changeColor() {           
+            document.body.style.backgroundColor = colors[index];
+            index = (index + 1) % colors.length;
         }
     </script>
 </body>
