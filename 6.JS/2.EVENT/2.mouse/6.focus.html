@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="myInput" placeholder="여기 아이다를 입력하세요.">
+    <input type="password" id="myInput2" placeholder="여기 비밀번호를 입력하세요.">
+    <script>
+        document.getElementById('myInput').addEventListener('focus', () => {
+            console.log('id입력창 활성화됨');
+        });
+
+        document.getElementById('myInput').addEventListener('blur', () => {
+            console.log('pw입력창 비활성화됨');
+        });
+
+        document.getElementById('myInput2').addEventListener('focus', () => {
+            console.log('id입력창 활성화됨2');
+        });
+
+        document.getElementById('myInput2').addEventListener('blur', () => {
+            console.log('pw입력창 비활성화됨2');
+        });
+    </script>
+</body>
+</html>

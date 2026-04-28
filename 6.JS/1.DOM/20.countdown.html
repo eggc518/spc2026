@@ -24,18 +24,18 @@
             //2. setInterval() 이용해서 매초 카운트 다운
             const timerId = setInterval(() => {
                 if(inputValue <= 0) {
+                    //4. 시간 만료되면 끝났다고 출력
                     clearInterval(timerId);
                     timerDisplay.textContent = '시간이 종료되었습니다';
                 } else {
+                    //3. 남은초를 DOM에 (p태그) 출력
                     timerDisplay.textContent = `${inputValue}초가 남았습니다`;
                     inputValue--;
                 }
             }, 1000);
 
-            //3. 남은초를 DOM에 (p태그) 출력
 
 
-            //4. 시간 만료되면 끝났다고 출력
         }
     </script>
 </body>

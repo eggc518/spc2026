@@ -24,6 +24,7 @@
             //원하는 새로운 DOM 요소 만들기
             const timerP = document.createElement('p');
             timerP.textContent = `${inputValue}초가 남았습니다`
+            // console.log('timerP찍어봄: ',timerP);
 
             //새로 만든 요소를 원하는 div에다가 추가하기
             timerContainer.appendChild(timerP);
@@ -31,18 +32,18 @@
             //2. setInterval() 이용해서 매초 카운트 다운
             const timerId = setInterval(() => {
                 if(inputValue <= 0) {
+                    //4. 시간 만료되면 끝났다고 출력
                     clearInterval(timerId);
                     timerP.textContent = '시간이 종료되었습니다.';
                 } else {
                     inputValue--;
+                    //3. 남은초를 DOM에 (p태그) 출력
                     timerP.textContent = `${inputValue}초가 남았습니다`;
                 }
             }, 1000);
 
-            //3. 남은초를 DOM에 (p태그) 출력
 
 
-            //4. 시간 만료되면 끝났다고 출력
         }
     </script>
 </body>
