@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>숫자 맞추기 게임</h1>
+    <h2>1~100까지의 숫자를 맞췌보세요</h2>
+    <input type="number" id="guessNumber" placeholder="숫자를 입력하시오">
+    <button id="guessButton" onclick="guessNumber()">Guess</button>
+    <div id="result"><!-- 결과 출력 --></div>
+    <div><ol id="history"><!-- 히스토리 출력 --></ol></div>
+
+    <script>
+        const randomNumber = Math.floor(Math.random()*100)+1; //0~99까지 -> 1~100까지
+        console.log("생성한 숫자: ", randomNumber);
+        const result = document.getElementById('result');
+        const history = document.getElementById('history');
+        
+        function guessNumber() {
+            const guess = document.getElementById('guessNumber').value;
+            
+            console.log(history);
+            
+            //찍은 숫자 크면 "숫자가 큽니다. 더 작은 숫자를 입력하세요."
+            //찍은 숫자 작으면 "숫자가 작습니다. 더 큰 숫자를 입력하세요."
+            //정답이 맞으면 "축하합니다! 정답을 맞췄습니다."
+            //사용자가 입력한 모든 히스토리를 아래에 보여준다 (매 guess마다 새로운 dom 추가)
+            //정답을 맞췃을때 몇번만에 맞췄는지 알려준다 "축하합니다~ 정답은 00번만에 맞췄습니다."
+            
+            if(guess > randomNumber) {
+                result.textContent = "숫자가 큽니다. 더 작은 숫자를 입력하세요.";
+                
+            } else if(guess < randomNumber) {
+                result.textContent = "숫자가 작습니다. 더 큰 숫자를 입력하세요.";
+                
+            } else {
+                result.textContent = "축하합니다! 정답을 맞췄습니다."
+            }
+            
+            const li = document.createElement("li");
+            li.textContent = `입력한 숫자는 ${guess}: ${result.textContent}`;
+            history.appendChild(li);
+
+        }
+    </script>
+</body>
+</html>

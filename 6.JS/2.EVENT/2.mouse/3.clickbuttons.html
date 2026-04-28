@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myButton {
+            width: 200px;
+            height: 100px;
+            background-color: aqua;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="myButton">클릭</duv>
+    <script>
+        // document.getElementById('myButton').addEventListener('mousedown', () => {
+        //     console.log('버튼눌림');
+        // });
+        
+
+        document.getElementById('myButton').addEventListener('mousedown', (evnet) => {
+            console.log('버튼눌림: ', evnet);
+            
+            switch (event.button) {
+                case 0: //왼쪽버튼
+                    console.log('왼쪽버튼 눌림');
+                    break;
+                case 1: //미든버튼
+                    console.log('가운데버튼 눌림');
+                    break;
+                case 2: //오른쪽버튼
+                    console.log('오른쪽버튼 눌림');
+                    break;
+                default:
+                    console.log('뭔지모르는버튼 눌림', evnet.button);
+            }
+        });
+
+        document.getElementById('myButton').addEventListener('mouseup', (evnet) => {
+            console.log('버튼뗌: ', evnet);
+            
+            switch (event.button) {
+                case 0: //왼쪽버튼뗌
+                    console.log('왼쪽버튼 뗌');
+                    break;
+                case 1: //미든버튼뗌
+                    console.log('가운데버튼 뗌');
+                    break;
+                case 2: //오른쪽버튼뗌
+                    console.log('오른쪽버튼 뗌');
+                    break;
+                default:
+                    console.log('뭔지모르는버튼 뗌', evnet.button);
+            }
+        });
+
+    </script>
+</body>
+</html>
