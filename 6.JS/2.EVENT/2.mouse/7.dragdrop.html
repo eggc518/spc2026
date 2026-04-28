@@ -50,32 +50,25 @@
         const dropZone = document.getElementById('dropZone');
         const startZone = document.getElementById('startZone');
         
+
         dragItem.addEventListener('dragstart', () => {
             console.log('Drag Started');
         });
 
-        startZone.addEventListener('dragover', (ev) => {
+        [startZone, dropZone].forEach((zone) => {
+            zone.addEventListener('dragover', (ev) => {
             ev.preventDefault();
-            console.log('startZone 위에 있음');
+            console.log('위에 있음');
+            });
         });
 
-        startZone.addEventListener('drop', (ev) => {
-            ev.preventDefault();
-            console.log('여기에 놓았음');
-            startZone.appendChild(dragItem);
-        });
-
-        dropZone.addEventListener('dragover', (ev) => {
-            ev.preventDefault();
-            console.log('dropZone 위에 있음');
-        });
-
-        dropZone.addEventListener('drop', (ev) => {
+        [startZone, dropZone].forEach((zone) => {
+            zone.addEventListener('drop', (ev) => {
             ev.preventDefault();
             console.log('여기에 놓았음');
-            dropZone.appendChild(dragItem); //DOM 요소를 append하면 그 가지요소 자체가 옮겨짐 
+            zone.appendChild(dragItem);
+            });
         });
-
     </script>
 </body>
 </html>
