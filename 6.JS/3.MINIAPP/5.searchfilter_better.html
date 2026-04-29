@@ -49,36 +49,20 @@
 
     <script>
         const searchInput = document.getElementById('searchInput');
-        const itemList = document.getElementById('itemList');
-        const items = itemList.getElementsByTagName('li'); //이 목록은 HTMLCollection
-
+        const items = document.querySelectorAll('#itemList > li'); //NodeList타입
+  
         searchInput.addEventListener('keyup', () => {
             //필터링 구현
             const filter = searchInput.value.toLowerCase();
-            // console.log(filter);
-
-            //레거시한 for 반복 스타일
-            /*for(let i=0; i<items.length; i++) {
-                const item = items[i];
-                const text = item.textContent;
-                if(text.toLowerCase().includes(filter)) { //소문자와 소문자로 비교해서 대소문자 구분없이 검색함
-                    item.style.display = '';
-                } else {
-                    item.style.display = 'none';
-                }
-            }*/
-
             
-            Array.from(items).forEach((item) => {
-                const text = item.textContent;
-
-                if(text.toLowerCase().includes(filter)) {
-                    item.style.display = '';
-                } else {
-                    item.style.display = 'none';
-                }
+            items.forEach((item) => {
+                item.style.display = item.textContent.toLowerCase().includes(filter) ? '' : 'none';
             })
-        });
+        })
+
+        //디바운스를 구현하기(setTimeout을 통해서...)
+
+
     </script>
 </body>
 </html>
