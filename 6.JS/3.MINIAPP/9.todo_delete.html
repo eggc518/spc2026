@@ -10,6 +10,14 @@
             width: 30px;
             height: 25px;
         }
+
+        #todo-list li {
+            cursor: pointer;
+        }
+
+        #todo-list li.done {
+            text-decoration: line-through;
+        }
     </style>
 </head>
 <body>
@@ -33,22 +41,22 @@
             if(newInput.value.trim() == '') { return; } //입력칸이 빈칸이면 종료
 
             const li = document.createElement('li');
-            delIcon.style.display ='block';
-            li.textContent = newInput.value;  
+            li.innerHTML = `${newInput.value} <button class="delBtn">삭제</button>`;  
             todoList.appendChild(li);
             
             newInput.value = '';
             
             //3. li 클릭해서 완료 상태 표시, css로 strike라인 추가
             //4. 완료 취소기능(위의 반대)
-            li.addEventListener('click', () => {                
-
-                if(li.style.textDecoration == 'line-through') {
-                    li.style.textDecoration = 'none';
-                } else {
-                    li.style.textDecoration = 'line-through';
-                }
+            li.addEventListener('click', () => {   
+                li.classList.toggle('done');
             });
+
+            //삭제버튼 추가
+            const delBtn = li.querySelector('.delBtn');
+            delBtn.addEventListener('click', () => {
+                li.remove();
+            })
 
 
         }

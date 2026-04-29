@@ -10,6 +10,14 @@
             width: 30px;
             height: 25px;
         }
+
+        #todo-list li {
+            cursor: pointer;
+        }
+
+        #todo-list li.done {
+            text-decoration: line-through;
+        }
     </style>
 </head>
 <body>
@@ -41,13 +49,18 @@
             
             //3. li 클릭해서 완료 상태 표시, css로 strike라인 추가
             //4. 완료 취소기능(위의 반대)
-            li.addEventListener('click', () => {                
+            li.addEventListener('click', () => {   
+                //클릭 이벤트를 나의 li에 걸기  
+                // li.classList.add('done');
+                
+                
+                // if(li.classList.contains('done')) {
+                //     li.classList.remove('done');
+                // } else {
+                //     li.classList.add('done');
+                // }
 
-                if(li.style.textDecoration == 'line-through') {
-                    li.style.textDecoration = 'none';
-                } else {
-                    li.style.textDecoration = 'line-through';
-                }
+                li.classList.toggle('done');
             });
 
 
