@@ -1,0 +1,77 @@
+/* 전체 화면 가운데 정렬 */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f7fb;
+    font-family: Arial, sans-serif;
+}
+
+/* 스톱워치 박스 (카드 스타일) */
+.stopwatch-box {
+    width: 300px;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* 시간 표시 영역 */
+.display {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: #333;
+}
+
+/* 버튼 컨테이너 */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* 공통 버튼 스타일 */
+button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* 시작 버튼 */
+#startBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#startBtn:hover {
+    background-color: #45a049;
+}
+
+/* 중지 버튼 */
+#stopBtn {
+    background-color: #f44336;
+    color: white;
+}
+
+#stopBtn:hover {
+    background-color: #d73833;
+}
+
+/* 리셋 버튼 */
+#resetBtn {
+    background-color: #555;
+    color: white;
+}
+
+#resetBtn:hover {
+    background-color: #333;
+}
