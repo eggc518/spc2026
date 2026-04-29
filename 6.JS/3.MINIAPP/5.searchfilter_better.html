@@ -50,17 +50,24 @@
     <script>
         const searchInput = document.getElementById('searchInput');
         const items = document.querySelectorAll('#itemList > li'); //NodeList타입
+
+        let timer;
   
         searchInput.addEventListener('keyup', () => {
-            //필터링 구현
-            const filter = searchInput.value.toLowerCase();
-            
-            items.forEach((item) => {
-                item.style.display = item.textContent.toLowerCase().includes(filter) ? '' : 'none';
-            })
+            clearTimeout(timer); //디바운스에서 반드시 취소를 넣어줘야함 -> 안했다면 여러번 실행하는거 동일함
+
+            //디바운스를 구현하기(setTimeout을 통해서...)
+            timer = setTimeout(() => {
+                //필터링 구현
+                const filter = searchInput.value.toLowerCase();
+                
+                items.forEach((item) => {
+                    item.style.display = item.textContent.toLowerCase().includes(filter) ? '' : 'none';
+                })
+
+            }, 2000);
         })
 
-        //디바운스를 구현하기(setTimeout을 통해서...)
 
 
     </script>
