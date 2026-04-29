@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>5 Words Hangman</h1>
+    <div>
+        <p id="word">_ _ _ _ _</p>
+        <input type="text" id="guess" maxlength="1"> <!-- 입력창 -->
+        <button id="submit" onclick="submit()">제출</button>
+        <button id="reset" onclick="reset()">다시 시작</button>
+        <div id="result"><!-- 결과보여지는칸 --></div>
+        <div id="history">=== History ===<!-- 히스토리칸 --></div>
+    </div>
+
+    <script>
+        const words = ['apple', 'grape', 'peach', 'mango', 'berry'];
+        const randomIndex = Math.floor(Math.random() * words.length);
+        
+        const result = document.getElementById('result');
+        const history = document.getElementById('history');
+
+        console.log('선택된 단어: ',words[randomIndex]);
+
+        function submit(alphabet) {
+            const guess = document.getElementById('guess');
+            const inputWord = guess.value.toLowerCase();
+            guess.value = '';
+            result.textContent = '';
+
+            if (inputWord.length !== 1 || !/[a-z]/.test(inputWord)) {
+                result.textContent = '알파벳으로 한 글자만 입력하세요.';
+                return;
+            }
+            
+            const word = words[randomIndex];
+            let displayWord = document.getElementById('word').textContent.split(' ');
+            
+            for (let i = 0; i < word.length; i++) {
+                if (word[i] === inputWord) {
+                    displayWord[i] = inputWord;
+                }
+            }
+            
+            document.getElementById('word').textContent = displayWord.join(' ');
+            
+            const li = document.createElement('li');
+            li.textContent = `입력한 단어: ${inputWord}`;
+            history.appendChild(li);
+
+            if (!displayWord.includes('_')) {
+                result.textContent = '축하합니다! 단어를 맞추셨습니다🥳';
+            }
+            
+        }
+        
+        function reset() {
+            location.reload();
+        }
+
+    </script>
+</body>
+</html>
