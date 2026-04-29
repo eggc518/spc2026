@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>실시간 검색 필터</h1>
+    <input type="text" id="searchInput" placeholder="검색어...">
+    <ul id="itemList">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Orange</li>
+        <li>Grape</li>
+        <li>Strawberry</li>
+        <li>Blueberry</li>
+        <li>Watermelon</li>
+        <li>Pineapple</li>
+        <li>Mango</li>
+        <li>Peach</li>
+        <li>Cherry</li>
+        <li>Pear</li>
+        <li>Plum</li>
+        <li>Kiwi</li>
+        <li>Lemon</li>
+        <li>Lime</li>
+        <li>Apricot</li>
+        <li>Pomegranate</li>
+        <li>Coconut</li>
+        <li>Avocado</li>
+    </ul>
+
+    <script>
+        const itemList = Array.from(document.querySelectorAll('#itemList li'));
+
+        // console.log('itemList 찍어봄: ',itemList);
+        const fruits = itemList.map(li => li.textContent);
+  
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (ev) => {
+            const keyword = ev.target.value.toLowerCase();
+            
+            itemList.forEach((li) => {
+                const text = li.textContent.toLowerCase();
+
+                if(text.includes(keyword)) {
+                    li.style.display ='';
+                } else {
+                    li.style.display = 'none';
+                }
+            })
+        })
+
+
+    </script>
+</body>
+</html>
