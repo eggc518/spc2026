@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="300"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const context = canvas.getContext('2d');
+        
+        //이동각도
+        let x = 20;
+        let y = 20;
+        let r = 10;
+        let speed = 2;
+        let speedx = speed;
+        let speedy = speed;
+        
+        function moveMan() {
+            
+            //새로 생기는 팩맨이 안겹치게함
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+
+            //팩맨 생성
+            const mouse = (Math.PI / 4);
+            const endAngle = (Math.PI * 2) -mouse;
+    
+
+            context.beginPath();
+            context.moveTo(x,y);
+            context.arc(x, y, r, mouse, endAngle);
+            context.lineTo(x,y);
+            context.fillStyle = 'yellow';
+            context.fill();
+            context.stroke();
+
+            x += speedx;
+            
+            if(x > canvas.width-r) {
+                x = canvas.width-r;
+                y += speedy;
+            }
+            
+            if(y > canvas.height-r) {
+                y = canvas.height-r;
+                x -= speedx;
+            }
+
+            if(x < r) {
+                x = r;
+                speedy = -speedy;
+            }
+
+
+            if(y < r) {
+                y = r;
+                x = -speedx;
+            }
+
+
+
+            //움직이는거
+            requestAnimationFrame(moveMan);
+        }
+
+        moveMan();
+
+    </script>
+</body>
+</html>
