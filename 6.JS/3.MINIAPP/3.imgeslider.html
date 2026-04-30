@@ -36,21 +36,39 @@
             padding: 20px;
             font-size: 16px;
         }
+
+        #next {
+            position: flex;
+            transform: translate(40%, -550%);
+            color: white;
+            font-size: 20px;
+        }
+
+        #prev {
+            position: flex;
+            transform: translate(-40%, 590%);
+            color: white;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>이미지 슬라이더</h1>
     <div class="slider">
-        <img id="img1" src="images/chip.jpg" class="active">
-        <img id="img2" src="images/coon.jpg">
-        <img id="img3" src="images/ele.jpg">
+        <div>
+            <div id="prev">Prev</div>
+            <img id="img1" src="images/chip.jpg" class="active">
+            <img id="img2" src="images/coon.jpg">
+            <img id="img3" src="images/ele.jpg">
+            <div id="next">Next</div>
+        </div> 
 
         <div class="filename" id="filename">images/chip.jpg</div>
 
-        <div class="buttons">
+        <!-- <div class="buttons">
             <button id="prevBtn">이전</button>
             <button id="nextBtn">다음</button>
-        </div>
+        </div> -->
     </div>
 
     <script>
@@ -58,6 +76,8 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const filename = document.getElementById('filename');
+        const prev = document.getElementById('prev');
+        const next = document.getElementById('next');
 
         let index = 0;
 
@@ -73,8 +93,12 @@
             filename.textContent = images[index].src.split('/').slice(-2).join('/');
         }
 
-        nextBtn.addEventListener('click', () => show(1));
-        prevBtn.addEventListener('click', () => show(-1));
+        // nextBtn.addEventListener('click', () => show(1));
+        // prevBtn.addEventListener('click', () => show(-1));
+
+        prev.addEventListener('click', () => show(-1));
+        next.addEventListener('click', () => show(1));
+
 
 
     </script>
