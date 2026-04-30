@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid#000;;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="aniCanvas" width="400" height="200"></canvas>
+    <script>
+        const canvas = document.getElementById('aniCanvas');
+        const context = canvas.getContext('2d');
+
+        let x = 50;
+        let y = 50;
+        let radious = 10;
+        let speed = 2;
+        let speedx = speed;
+        let speedy = speed;
+
+        function drawBall() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+            context.arc(x, y, radious, 0, Math.PI*2);
+            context.fillStyle = 'red';
+            context.fill();
+            context.closePath();
+
+            x += speedx;
+            y += speedy;
+
+            // 공이 y축 끝에 닿으면?
+            if(y > canvas.height-radious) {               
+                speedy = -1;
+            }
+            
+            if(x > canvas.width-radious) {               
+                speedx = -1;
+            }
+
+            if(x < 0 + radious) {
+                speedx = +1;
+            }
+            
+
+            if(y < 0 + radious) {
+                speedy = +1;
+            }
+
+            requestAnimationFrame(drawBall);
+        }
+
+        drawBall();
+
+        //코드 리팩토링은 각자 알아서 해보기
+        if(ball.x + ball.radious > canvas.width || ball.x - ball.radious < 0) {
+            ball.dx = -ball.dx;
+        }
+    </script>
+</body>
+</html>
